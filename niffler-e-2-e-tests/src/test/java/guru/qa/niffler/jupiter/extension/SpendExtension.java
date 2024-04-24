@@ -38,15 +38,15 @@ public class SpendExtension implements BeforeEachCallback, ParameterResolver {
                 extensionContext.getRequiredTestMethod(),
                 GenerateSpend.class
         ).ifPresent(
-                generateSpend -> {
+                spend -> {
                     SpendJson spendJson = new SpendJson(
                             null,
                             new Date(),
-                            generateSpend.category(),
-                            generateSpend.currency(),
-                            generateSpend.amount(),
-                            generateSpend.description(),
-                            generateSpend.username()
+                            spend.category(),
+                            spend.currency(),
+                            spend.amount(),
+                            spend.description(),
+                            spend.username()
                     );
                     try {
                         SpendJson result = spendApi.createSpend(spendJson).execute().body();
