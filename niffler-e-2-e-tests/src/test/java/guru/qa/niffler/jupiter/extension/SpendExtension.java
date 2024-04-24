@@ -1,7 +1,7 @@
 package guru.qa.niffler.jupiter.extension;
 
 import guru.qa.niffler.api.SpendApi;
-import guru.qa.niffler.jupiter.annotation.Spend;
+import guru.qa.niffler.jupiter.annotation.GenerateSpend;
 import guru.qa.niffler.model.SpendJson;
 import okhttp3.OkHttpClient;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
@@ -36,17 +36,17 @@ public class SpendExtension implements BeforeEachCallback, ParameterResolver {
 
         AnnotationSupport.findAnnotation(
                 extensionContext.getRequiredTestMethod(),
-                Spend.class
+                GenerateSpend.class
         ).ifPresent(
-                spend -> {
+                generateSpend -> {
                     SpendJson spendJson = new SpendJson(
                             null,
                             new Date(),
-                            spend.category(),
-                            spend.currency(),
-                            spend.amount(),
-                            spend.description(),
-                            spend.username()
+                            generateSpend.category(),
+                            generateSpend.currency(),
+                            generateSpend.amount(),
+                            generateSpend.description(),
+                            generateSpend.username()
                     );
                     try {
                         SpendJson result = spendApi.createSpend(spendJson).execute().body();
