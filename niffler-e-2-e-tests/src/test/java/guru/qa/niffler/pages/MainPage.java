@@ -23,7 +23,7 @@ public class MainPage {
 
     @Step("Select found spending")
     public MainPage chooseSpendingFromTable(SelenideElement rows) {
-        rows.$$("td").first().scrollTo().click();
+        rows.$("td").scrollTo().click();
         return this;
     }
 

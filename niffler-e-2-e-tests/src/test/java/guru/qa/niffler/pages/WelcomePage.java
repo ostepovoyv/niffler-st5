@@ -14,7 +14,7 @@ public class WelcomePage {
 
     @Step("Click login button")
     public WelcomePage clickLoginButton(String buttonName) {
-        loginButton.should(visible).shouldHave(text(buttonName)).click();
+        loginButton.shouldHave(text(buttonName)).click();
         return this;
     }
 
