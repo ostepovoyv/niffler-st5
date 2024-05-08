@@ -11,31 +11,45 @@ import static com.codeborne.selenide.Selenide.$;
 public class MainPage {
 
     private final SelenideElement
-            deleteButton = $(".spendings__bulk-actions button");
+            deleteButton = $(".spendings__bulk-actions button"),
+            friendsButton = $("a[href*='friends']"),
+            allPeopleButton = $("a[href*='people']");
 
     private final ElementsCollection
             spendingsTableRows = $(".spendings-table tbody").$$("tr");
 
-    @Step("Search spending by description")
+    @Step("Поиск расходов по описанию")
     public SelenideElement findSpendingRowByDescription(String description) {
         return spendingsTableRows.find(text(description));
     }
 
-    @Step("Select found spending")
+    @Step("Выбор найденных расходов")
     public MainPage chooseSpendingFromTable(SelenideElement rows) {
         rows.$("td").scrollTo().click();
         return this;
     }
 
-    @Step("Delete found spending from the table")
+    @Step("Удаление найденных расходов из таблицы")
     public MainPage deleteSpending(String buttonName) {
         deleteButton.shouldHave(text(buttonName)).click();
         return this;
     }
 
-    @Step("Check table size after delete")
+    @Step("Проверка размера таблицы после удаления")
     public MainPage checkCountOfSpendings(int expectedSize) {
         spendingsTableRows.shouldHave(size(expectedSize));
+        return this;
+    }
+
+    @Step("Переход на страницу Friends")
+    public MainPage clickFriendsButton() {
+        friendsButton.click();
+        return this;
+    }
+
+    @Step("Переход на страницу All People")
+    public MainPage clickAllPeopleButton() {
+        allPeopleButton.click();
         return this;
     }
 
