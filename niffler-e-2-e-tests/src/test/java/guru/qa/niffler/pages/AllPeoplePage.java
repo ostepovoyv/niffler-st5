@@ -4,6 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 public class AllPeoplePage {
@@ -19,14 +20,13 @@ public class AllPeoplePage {
 
     @Step("Проверка наличия имени пользователя в таблице All People")
     public AllPeoplePage checkUserNameInAllPeopleTable(String name) {
-        allPeopleTable.shouldHave(text(name));
+        allPeopleTable.$$("tr").find(text(name)).shouldBe(visible);
         return this;
     }
 
-    @Step("Проверка наличия имени: {name} и статуса: {status} в табилце AllPeople")
-    public AllPeoplePage checkFriendsNameAndStatus(String user, String status) {
-        allPeopleTable.$$("tr").find(text(user));
-        allPeopleTable.shouldHave(text(status));
+    @Step("Проверка наличия имени: {user} и статуса: {status} в таблице AllPeople")
+    public AllPeoplePage checkFriendsStatus(String user, String status) {
+        allPeopleTable.$$("tr").find(text(user)).shouldHave(text(status));
         return this;
     }
 

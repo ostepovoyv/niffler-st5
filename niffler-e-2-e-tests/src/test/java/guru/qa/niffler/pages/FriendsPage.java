@@ -10,7 +10,6 @@ import static com.codeborne.selenide.Condition.visible;
 public class FriendsPage {
 
     private final SelenideElement
-            friendsTable = $(".abstract-table__buttons"),
             friendsTableName = $(".abstract-table tbody");
 
     @Step("Поиск кнопки Submit invitation для пользователя с именем: {name}")
@@ -25,8 +24,7 @@ public class FriendsPage {
 
     @Step("Поиск друга с именем: {name} и статусом: {state}")
     public FriendsPage checkNameAndStatusInFriendsTable(String name, String state) {
-        friendsTable.$$("tr").find(text(name));
-        friendsTable.shouldHave(text(state));
+        friendsTableName.$$("tr").find(text(name)).shouldHave(text(state));
         return this;
     }
 

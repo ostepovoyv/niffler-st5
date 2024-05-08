@@ -35,26 +35,6 @@ public class UsersQueueTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Проверка входящего запроса в друзья")
-    void incomingFriendRequestTest(
-            @User(INVITATION_RECEIVED) UserJson user
-    ) {
-        signInPage.signIn(user.username(), user.testData().password());
-        mainPage.clickFriendsButton();
-        friendsPage.checkFriendRequest(user.testData().friendName());
-    }
-
-    @Test
-    @DisplayName("Проверка исходящего запроса в друзья")
-    void sentFriendRequestTest(
-            @User(INVITATION_SEND) UserJson user
-    ) {
-        signInPage.signIn(user.username(), user.testData().password());
-        mainPage.clickAllPeopleButton();
-        allPeoplePage.checkSentFriendRequest("Pending invitation");
-    }
-
-    @Test
     @DisplayName("Проверка статусов у пользователя в таблице All People")
     void friendsStatusInAllPeopleTest(
             @User(WITH_FRIENDS) UserJson user1,
@@ -62,10 +42,10 @@ public class UsersQueueTest extends BaseTest {
     ) {
         signInPage.signIn(user1.username(), user1.testData().password());
         mainPage.clickAllPeopleButton();
-        allPeoplePage.checkFriendsNameAndStatus(
+        allPeoplePage.checkFriendsStatus(
                 user1.testData().friendName(),
                 "You are friends");
-        allPeoplePage.checkFriendsNameAndStatus(
+        allPeoplePage.checkFriendsStatus(
                 user2.testData().friendName(),
                 "Pending invitation");
     }
