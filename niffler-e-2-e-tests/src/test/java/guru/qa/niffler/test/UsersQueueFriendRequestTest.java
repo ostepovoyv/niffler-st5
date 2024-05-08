@@ -25,7 +25,7 @@ public class UsersQueueFriendRequestTest extends BaseTest {
     private final FriendsPage friendsPage = new FriendsPage();
 
     @BeforeEach
-    void doLogin(@User(INVITATION_RECEIVED) UserJson user) {
+    void doLogin(@User(INVITATION_SEND) UserJson user) {
         signInPage.signIn(user.username(), user.testData().password());
     }
 
