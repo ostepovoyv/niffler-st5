@@ -20,7 +20,6 @@ public class UserAuthEntity implements Serializable {
     private Boolean accountNonLocked;
     private Boolean credentialsNonExpired;
     private List<AuthorityEntity> authorities = new ArrayList<>();
-    ;
 
     public static UserAuthEntity fromJson(RandomUserJson userJson) {
         AuthorityEntity read = new AuthorityEntity();
