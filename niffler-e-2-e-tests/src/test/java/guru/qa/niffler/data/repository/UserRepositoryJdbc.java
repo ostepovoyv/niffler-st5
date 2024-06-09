@@ -177,14 +177,13 @@ public class UserRepositoryJdbc implements UserRepository {
 
     @Override
     public Optional<UserEntity> findUserInUserdataById(UUID id) {
-        UserEntity user;
+        UserEntity user = new UserEntity();
         try (Connection conn = udDataSource.getConnection();
              PreparedStatement userPs = conn.prepareStatement(
                      "SELECT * FROM \"user\" WHERE id = ?"
              )) {
             userPs.setObject(1, id);
             ResultSet resultSet = userPs.executeQuery();
-            user = new UserEntity();
             if (resultSet.next()) {
                 user.setId((UUID) resultSet.getObject("id"));
                 user.setUsername(resultSet.getString("username"));
