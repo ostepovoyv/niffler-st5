@@ -13,7 +13,8 @@ public class MainPage {
     private final SelenideElement
             deleteButton = $(".spendings__bulk-actions button"),
             friendsButton = $("a[href*='friends']"),
-            allPeopleButton = $("a[href*='people']");
+            allPeopleButton = $("a[href*='people']"),
+            profileButton = $(".header__avatar");
 
     private final ElementsCollection
             spendingsTableRows = $(".spendings-table tbody").$$("tr");
@@ -50,6 +51,12 @@ public class MainPage {
     @Step("Переход на страницу All People")
     public MainPage clickAllPeopleButton() {
         allPeopleButton.click();
+        return this;
+    }
+
+    @Step("Переход на страницу Profile")
+    public MainPage clickProfileButton() {
+        profileButton.click();
         return this;
     }
 
